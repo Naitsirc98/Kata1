@@ -1,13 +1,16 @@
 package naitsirc98.is2.kata1;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Person {
 	
-	private final String name;
-	private final Date birthdate;
+	private static final long MILLIS_PER_YEAR = 31536000000L;
 	
-	public Person(String name, Date birthdate) {
+	private final String name;
+	private final Calendar birthdate;
+	
+	public Person(String name, Calendar birthdate) {
 		this.name = name;
 		this.birthdate = birthdate;
 	}
@@ -16,13 +19,18 @@ public class Person {
 		return name;
 	}
 
-	public Date getBirthdate() {
+	public Calendar getBirthdate() {
 		return birthdate;
 	}
 	
 	public int getAge() {
-		return (int) ((new Date().getTime() 
-				- birthdate.getTime()) / 31536000000L);
+		Calendar today = GregorianCalendar.getInstance();
+		return (int) (millisToYears(today.getTimeInMillis()
+				- birthdate.getTimeInMillis()));
+	}
+	
+	private long millisToYears(long ms) {
+		return ms / MILLIS_PER_YEAR;
 	}
 
 }
