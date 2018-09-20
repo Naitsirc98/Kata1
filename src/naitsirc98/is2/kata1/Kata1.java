@@ -14,6 +14,7 @@ public class Kata1 {
 		
 		System.out.printf("%s tiene %d años",
 				person.getName(), person.getAge());
+		
 	}
 
 }
